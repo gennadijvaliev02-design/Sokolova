@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#153b31" />
+<title>SOKOLOVA — massage studio</title>
+<meta name="description" content="SOKOLOVA massage studio — массаж и коррекция фигуры с медицинским подходом. Москва, м. Октябрьское поле." />
+<style>
+:root{
+  --forest:#153b31;
+  --forest-2:#214f41;
+  --ivory:#f4efe5;
+  --ivory-2:#fbf8f1;
+  --ink:#18332c;
+  --sage:#6f8179;
+  --line:#d9d3c8;
+  --champ:#aa9364;
+  --champ-soft:#d8c9a8;
+  --white:#fffdf8;
+  --shadow:0 18px 50px rgba(18,51,44,.12);
+  --radius:28px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:"Avenir Next","Segoe UI",Arial,sans-serif;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input{font:inherit}
+button{cursor:pointer}
+.serif{font-family:"Iowan Old Style","Baskerville","Palatino Linotype","Book Antiqua",Georgia,serif}
+.wrap{width:min(1180px,calc(100% - 34px));margin:0 auto}
+.eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--sage)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(244,239,229,.86);backdrop-filter:blur(18px);border-bottom:1px solid rgba(24,51,44,.08)}
+.topbar-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand strong{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:28px;letter-spacing:.16em;font-weight:500}
+.brand span{margin-top:8px;font-size:10px;letter-spacing:.34em;color:var(--sage)}
+.btn{border:0;border-radius:999px;padding:15px 22px;font-weight:700;background:var(--forest);color:var(--white);display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;transition:.2s ease;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.champ{background:var(--champ);color:#142d26}
+.hero{padding:42px 0 54px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero-copy{padding:16px 0}
+.hero h1{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:clamp(54px,6vw,88px);line-height:.96;font-weight:500;letter-spacing:-.045em;margin:18px 0 22px;max-width:760px}
+.hero p{font-size:20px;line-height:1.6;color:var(--sage);max-width:640px;margin:0 0 28px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-visual{position:relative}
+.hero-photo{border-radius:40px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:.83/1;position:relative;background:#d9d3c8}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.hero-badge{position:absolute;left:-28px;bottom:34px;width:150px;height:150px;border-radius:50%;background:var(--forest);color:var(--ivory);display:grid;place-items:center;text-align:center;padding:20px;border:10px solid var(--ivory);box-shadow:0 18px 35px rgba(18,51,44,.18)}
+.hero-badge strong{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:35px;font-weight:500;line-height:1}
+.hero-badge span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;line-height:1.4}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:48px}
+.stat{padding:24px 18px 24px 0}
+.stat+.stat{padding-left:26px;border-left:1px solid var(--line)}
+.stat strong{display:block;font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:34px;font-weight:500}
+.stat span{color:var(--sage);font-size:14px}
+.signature{padding:64px 0 76px}
+.signature-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+.signature-art{position:sticky;top:110px;min-height:360px;background:var(--forest);border-radius:36px;padding:36px;color:var(--ivory);overflow:hidden}
+.signature-art svg{width:100%;height:180px;opacity:.88}
+.signature-art .serif{font-size:42px;line-height:1.05;margin-top:18px}
+.signature-copy h2,.section-title{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:clamp(44px,5.3vw,72px);line-height:1;letter-spacing:-.035em;font-weight:500;margin:0 0 24px}
+.signature-copy p{font-size:19px;line-height:1.75;color:var(--sage);margin:0 0 22px}
+.bullets{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px}
+.bullet{border-top:1px solid var(--line);padding:18px 0 0;display:flex;gap:14px;align-items:flex-start}
+.bullet svg{width:34px;height:34px;flex:0 0 34px}
+.bullet strong{display:block;margin-bottom:5px}
+.bullet span{font-size:14px;color:var(--sage);line-height:1.45}
+.section{padding:78px 0}
+.section.dark{background:var(--forest);color:var(--ivory)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:26px;margin-bottom:34px}
+.section-head p{max-width:550px;color:var(--sage);font-size:17px;line-height:1.6;margin:0}
+.dark .section-head p{color:#b7c6bf}
+.line-art{width:110px;height:54px;opacity:.75;flex:0 0 auto}
+.masters{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+.masters::-webkit-scrollbar,.cases::-webkit-scrollbar{display:none}
+.master{flex:0 0 min(350px,82vw);scroll-snap-align:start}
+.master-media{aspect-ratio:.68/1;border-radius:28px;overflow:hidden;background:#0d211c}
+.master-media img{width:100%;height:100%;object-fit:cover}
+.master-body{padding:18px 4px 0}
+.master h3{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:34px;font-weight:500;margin:0 0 7px}
+.master strong{font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+.master p{color:#b7c6bf;line-height:1.55;font-size:15px;margin:10px 0 0}
+.cases{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 0 8px}
+.case{flex:0 0 min(520px,92vw);scroll-snap-align:start}
+.compare{position:relative;border-radius:30px;overflow:hidden;aspect-ratio:.78/1;background:#ddd;box-shadow:var(--shadow)}
+.compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.compare .after{clip-path:inset(0 50% 0 0)}
+.compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;z-index:5;cursor:ew-resize}
+.divider{position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(255,255,255,.94);transform:translateX(-1px);pointer-events:none;z-index:3}
+.divider::after{content:"";position:absolute;left:50%;top:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:var(--ivory);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.divider svg{position:absolute;z-index:4;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%)}
+.tag{position:absolute;bottom:16px;z-index:4;border-radius:999px;background:rgba(21,59,49,.92);color:white;padding:8px 13px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+.tag.before{left:16px}.tag.after{right:16px}
+.case-note{padding:14px 3px 0;color:var(--sage);font-size:14px}
+.price-wrap{background:var(--ivory-2);border-radius:34px;padding:28px;box-shadow:var(--shadow)}
+.tabs{display:flex;gap:10px;overflow:auto;padding-bottom:2px;margin-bottom:26px}
+.tab{border:1px solid var(--line);background:transparent;color:var(--ink);padding:12px 18px;border-radius:999px;font-weight:700;white-space:nowrap}
+.tab.active{background:var(--forest);color:white;border-color:var(--forest)}
+.price-panel{display:none}.price-panel.active{display:block}
+.price-item{padding:24px 0;border-top:1px solid var(--line)}
+.price-item:first-child{border-top:0;padding-top:4px}
+.price-title{display:flex;justify-content:space-between;gap:20px;align-items:start;margin-bottom:14px}
+.price-title h3{font-size:21px;margin:0}
+.price-title p{margin:6px 0 0;color:var(--sage);font-size:14px;line-height:1.45}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.tier{border:1px solid var(--line);border-radius:18px;background:white;padding:12px 8px;text-align:center;min-width:0}
+.tier.primary{background:var(--forest);border-color:var(--forest);color:white}
+.tier small{display:block;color:var(--sage);font-size:11px;margin-bottom:4px;white-space:nowrap}
+.tier.primary small{color:#cbd6d2}
+.tier b{font-size:17px;white-space:nowrap}
+.trial{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.trial-card{background:var(--forest);color:var(--ivory);border-radius:34px;padding:36px;position:relative;overflow:hidden}
+.trial-card h3{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:44px;line-height:1.05;font-weight:500;margin:10px 0 14px}
+.trial-card p{color:#c1d0ca;line-height:1.6}
+.trial-card .price{font-size:44px;font-weight:800;letter-spacing:-.04em;margin:26px 0}
+.trial-card svg{position:absolute;right:-30px;bottom:-28px;width:200px;height:200px;opacity:.11}
+.trial-list{background:var(--ivory-2);border-radius:34px;padding:32px;border:1px solid var(--line)}
+.trial-row{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.trial-row:last-child{border-bottom:0}
+.trial-row b{white-space:nowrap}
+.booking-band{background:var(--champ-soft);padding:64px 0}
+.booking-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+.booking-grid h2{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:clamp(44px,5vw,70px);line-height:1;font-weight:500;margin:0 0 18px}
+.booking-grid p{color:#5f6f69;line-height:1.65;max-width:650px}
+.footer{padding:52px 0 84px;background:var(--ivory-2)}
+.footer-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px}
+.footer h3{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:38px;font-weight:500;margin:0 0 14px}
+.footer p,.footer a{color:var(--sage);line-height:1.8}
+.footer-links{display:flex;flex-direction:column;align-items:flex-start}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(6,21,17,.65);display:none;align-items:center;justify-content:center;z-index:50;padding:14px}
+.modal.open{display:flex}
+.booking{width:min(760px,100%);max-height:min(88vh,860px);overflow:auto;background:var(--ivory);border-radius:34px;padding:26px;box-shadow:0 30px 100px rgba(0,0,0,.28)}
+.booking-top{display:flex;justify-content:space-between;align-items:center;gap:15px;position:sticky;top:-26px;background:linear-gradient(var(--ivory) 82%,rgba(244,239,229,0));padding:22px 0 18px;z-index:6}
+.close{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--ivory-2);font-size:24px}
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:4px 0 26px}
+.progress span{height:5px;border-radius:99px;background:#d5d4ce}.progress span.on{background:var(--champ)}
+.step{display:none}.step.active{display:block}
+.step h3{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:38px;font-weight:500;margin:0 0 8px}
+.step>p{color:var(--sage);margin:0 0 20px}
+.options{display:grid;gap:10px}
+.option{width:100%;border:1px solid var(--line);border-radius:20px;background:white;padding:17px 18px;text-align:left;display:flex;justify-content:space-between;gap:20px;color:var(--ink)}
+.option.selected{border:2px solid var(--champ);padding:16px 17px}
+.option b{white-space:nowrap}
+.date-grid,.time-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.date-grid .option,.time-grid .option{justify-content:center;text-align:center}
+.booking-nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+.booking-nav .btn{min-width:140px}
+.summary{background:var(--ivory-2);border:1px solid var(--line);border-radius:24px;padding:20px;margin-top:18px}
+.summary-row{display:flex;justify-content:space-between;gap:20px;padding:8px 0;color:var(--sage)}
+.summary-row b{color:var(--ink);text-align:right}
+.note{font-size:12px;color:var(--sage);line-height:1.5;margin-top:12px}
+@media(max-width:820px){
+ .wrap{width:min(100% - 28px,680px)}
+ .topbar-inner{height:68px}.brand strong{font-size:22px}.brand span{font-size:9px}.topbar .btn{padding:12px 16px;font-size:14px}
+ .hero{padding:24px 0 36px}.hero-grid{grid-template-columns:1fr;gap:24px}.hero-visual{order:-1}.hero-photo{aspect-ratio:1.16/1;border-radius:28px}.hero-photo img{object-position:center 25%}.hero-badge{width:118px;height:118px;left:14px;bottom:14px;border-width:7px}.hero-badge strong{font-size:28px}
+ .hero h1{font-size:clamp(43px,12.5vw,56px);line-height:.98;margin:12px 0 18px;letter-spacing:-.04em}.hero p{font-size:17px;line-height:1.55}.hero-actions{display:grid;grid-template-columns:1fr}.hero-actions .btn{width:100%}
+ .stats{margin-top:30px}.stat{padding:18px 8px 18px 0}.stat+.stat{padding-left:12px}.stat strong{font-size:24px}.stat span{font-size:11px}
+ .signature{padding:48px 0 54px}.signature-grid{grid-template-columns:1fr;gap:26px}.signature-art{position:relative;top:auto;min-height:auto;padding:28px}.signature-art svg{height:110px}.signature-art .serif{font-size:34px}.signature-copy h2,.section-title{font-size:46px}.signature-copy p{font-size:17px}.bullets{grid-template-columns:1fr}
+ .section{padding:56px 0}.section-head{align-items:start;margin-bottom:26px}.line-art{display:none}.section-head p{font-size:15px}.master{flex-basis:78vw}.master h3{font-size:30px}.case{flex-basis:92vw}
+ .price-wrap{padding:20px 16px;border-radius:26px}.tiers{gap:7px}.tier{padding:11px 4px;border-radius:15px}.tier small{font-size:10px}.tier b{font-size:15px}.price-title h3{font-size:19px}
+ .trial{grid-template-columns:1fr}.trial-card,.trial-list{padding:26px;border-radius:28px}.trial-card h3{font-size:38px}
+ .booking-band{padding:50px 0}.booking-grid{grid-template-columns:1fr}.booking-grid .btn{width:100%}
+ .footer{padding:42px 0 70px}.footer-grid{grid-template-columns:1fr}
+ .booking{padding:20px 16px;border-radius:26px;max-height:94vh}.booking-top{top:-20px;padding-top:14px}.step h3{font-size:34px}.date-grid,.time-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:390px){
+ .hero h1{font-size:43px}.topbar .btn{font-size:13px;padding:11px 13px}.brand strong{font-size:20px}.brand span{letter-spacing:.26em}
+ .stats{grid-template-columns:1fr 1fr 1fr}.stat strong{font-size:21px}.section-title,.signature-copy h2{font-size:42px}
+ .tier b{font-size:14px}.tier small{font-size:9.5px}.price-wrap{padding-inline:13px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand"><strong>SOKOLOVA</strong><span>massage studio</span></div>
+    <button class="btn champ" data-open-booking>Записаться</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Москва · м. Октябрьское поле</div>
+        <h1>Массаж и коррекция фигуры с медицинским подходом</h1>
+        <p>Четыре мастера, авторские методики и программы под вашу задачу. Первый сеанс можно попробовать от 3&nbsp;000&nbsp;₽.</p>
+        <div class="hero-actions">
+          <button class="btn" data-open-booking>Записаться на пробный сеанс</button>
+          <a class="btn secondary" href="https://wa.me/79858165220" target="_blank" rel="noopener">Написать в WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-photo"><img src="assets/a_clean_high_resolution_indoor_mirror_selfie_scen.png" alt="Sokolova massage studio" /></div>
+        <div class="hero-badge"><div><strong>4</strong><br><span>мастера<br>в студии</span></div></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>с 2008</strong><span>опыт старшего мастера</span></div>
+      <div class="stat"><strong>4 мастера</strong><span>разные специализации</span></div>
+      <div class="stat"><strong>3 000 ₽</strong><span>пробный женский сеанс</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="signature">
+  <div class="wrap signature-grid">
+    <div class="signature-art">
+      <div class="eyebrow" style="color:#c7d4cf">Sokolova method</div>
+      <svg viewBox="0 0 340 150" fill="none" aria-hidden="true"><path d="M22 104c42-45 75-64 111-63 43 1 58 38 93 40 29 2 54-19 93-61" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M26 118c41-20 75-27 109-18 38 10 59 28 99 22 33-5 57-26 81-48" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".65"/><path d="M95 70c-6 20 4 44 28 55m93-63c4 24-6 43-30 56" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg>
+      <div class="serif">Не просто расслабиться — работать с телом внимательно.</div>
+    </div>
+    <div class="signature-copy">
+      <div class="eyebrow">Студия Sokolova</div>
+      <h2>Подбираем технику под человека, а не человека под процедуру</h2>
+      <p>В студии сочетают классический, спортивный, лимфодренажный, антицеллюлитный и корректирующий массаж, работу с лицом, обёртывания и дополнительные техники. Если вы не знаете, что выбрать, можно начать с пробного сеанса.</p>
+      <div class="bullets">
+        <div class="bullet"><svg viewBox="0 0 40 40" fill="none"><path d="M7 26c8-15 17-19 27-12M8 31c7-10 16-14 26-8" stroke="#153b31" stroke-width="1.7" stroke-linecap="round"/><path d="M13 16c4 1 7 3 9 7" stroke="#aa9364" stroke-width="1.7" stroke-linecap="round"/></svg><div><strong>Медицинский подход</strong><span>В команде специалисты с медицинским образованием и опытом реабилитации.</span></div></div>
+        <div class="bullet"><svg viewBox="0 0 40 40" fill="none"><path d="M20 5c-4 4-6 9-6 14 0 7 6 12 6 16 0-4 6-9 6-16 0-5-2-10-6-14Z" stroke="#153b31" stroke-width="1.7"/><path d="M13 27c4-2 10-2 14 0" stroke="#aa9364" stroke-width="1.7" stroke-linecap="round"/></svg><div><strong>Коррекция фигуры</strong><span>Курсами и разовыми сеансами — с понятной стоимостью и сроком абонемента.</span></div></div>
+        <div class="bullet"><svg viewBox="0 0 40 40" fill="none"><path d="M20 5c-3 5-3 25 0 30M14 8c6 4 6 20 0 24M26 8c-6 4-6 20 0 24" stroke="#153b31" stroke-width="1.6" stroke-linecap="round"/><circle cx="20" cy="14" r="1.5" fill="#aa9364"/><circle cx="20" cy="21" r="1.5" fill="#aa9364"/><circle cx="20" cy="28" r="1.5" fill="#aa9364"/></svg><div><strong>Разные специализации</strong><span>Можно выбрать мастера под расслабление, спорт, лицо или корректирующие техники.</span></div></div>
+        <div class="bullet"><svg viewBox="0 0 40 40" fill="none"><path d="M10 28c5-10 8-17 10-22 2 6 5 13 10 22" stroke="#153b31" stroke-width="1.7" stroke-linecap="round"/><path d="M8 30c7 4 17 4 24 0" stroke="#aa9364" stroke-width="1.7" stroke-linecap="round"/></svg><div><strong>Пробный формат</strong><span>Понятный вход для нового клиента без покупки большого курса заранее.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="masters">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow" style="color:#b7c6bf">Команда</div><h2 class="section-title">Мастера студии</h2><p>У каждого своя сильная сторона — от коррекции фигуры до спортивного массажа и работы с лицом.</p></div>
+      <svg class="line-art" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M4 45c22-32 43-42 66-23 14 11 25 13 46-8" stroke="#f4efe5" stroke-width="1.6" stroke-linecap="round"/><path d="M13 51c19-13 39-17 58-7 17 9 30 7 43-2" stroke="#aa9364" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </div>
+    <div class="masters">
+      <article class="master"><div class="master-media"><img src="assets/IMG_0836.jpeg" alt="Диана — массажист" /></div><div class="master-body"><h3>Диана</h3><strong>Опыт 6 лет</strong><p>Корректирующий, антицеллюлитный, лимфодренажный, медовый массаж, лицо и косметика STYX.</p></div></article>
+      <article class="master"><div class="master-media"><img src="assets/IMG_0837.jpeg" alt="Иван — массажист" /></div><div class="master-body"><h3>Иван</h3><strong>Опыт 13 лет</strong><p>Спортивный, корректирующий, лимфодренажный, медовый массаж и стоунтерапия.</p></div></article>
+      <article class="master"><div class="master-media"><img src="assets/IMG_0838.jpeg" alt="Светлана — массажист" /></div><div class="master-body"><h3>Светлана</h3><strong>Медицинское образование</strong><p>Врач-терапевт, преподавала в медицинском колледже и работала на кафедре физиологии.</p></div></article>
+      <article class="master"><div class="master-media"><img src="assets/IMG_0839.jpeg" alt="Максим — массажист" /></div><div class="master-body"><h3>Максим</h3><strong>Массаж с 2008 года</strong><p>Медицинское образование, опыт в реабилитации и работа с суставами и мышечной структурой тела.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">Результаты</div><h2 class="section-title">До / после</h2><p>Потяните линию на фотографии. В демо мы использовали материалы студии и разделили исходные коллажи на интерактивные сравнения.</p></div><svg class="line-art" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M12 41c14-20 26-30 39-30 17 0 19 34 36 34 9 0 16-6 21-14" stroke="#153b31" stroke-width="1.6" stroke-linecap="round"/><path d="M8 50c33 1 61-4 103-25" stroke="#aa9364" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+    <div class="cases">
+      <article class="case"><div class="compare"><img src="assets/IMG_0842_after.jpg" alt="После"><img class="after" src="assets/IMG_0842_before.jpg" alt="До"><input aria-label="Сравнить до и после" type="range" min="0" max="100" value="50"><div class="divider"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4" stroke="#153b31" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="tag before">До</span><span class="tag after">После</span></div><div class="case-note">Кейс 01 · коррекция фигуры</div></article>
+      <article class="case"><div class="compare"><img src="assets/IMG_0843_after.jpg" alt="После"><img class="after" src="assets/IMG_0843_before.jpg" alt="До"><input aria-label="Сравнить до и после" type="range" min="0" max="100" value="50"><div class="divider"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4" stroke="#153b31" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="tag before">До</span><span class="tag after">После</span></div><div class="case-note">Кейс 02 · работа с силуэтом</div></article>
+      <article class="case"><div class="compare"><img src="assets/IMG_0844_after.jpg" alt="После"><img class="after" src="assets/IMG_0844_before.jpg" alt="До"><input aria-label="Сравнить до и после" type="range" min="0" max="100" value="50"><div class="divider"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4" stroke="#153b31" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="tag before">До</span><span class="tag after">После</span></div><div class="case-note">Кейс 03 · коррекция фигуры</div></article>
+      <article class="case"><div class="compare"><img src="assets/IMG_0845_after.jpg" alt="После"><img class="after" src="assets/IMG_0845_before.jpg" alt="До"><input aria-label="Сравнить до и после" type="range" min="0" max="100" value="50"><div class="divider"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4" stroke="#153b31" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="tag before">До</span><span class="tag after">После</span></div><div class="case-note">Кейс 04 · антицеллюлитная программа</div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="prices" style="padding-top:28px">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">Прайс</div><h2 class="section-title">Услуги и цены</h2><p>Чем длиннее абонемент, тем ниже стоимость одного сеанса. Срок действия: 5 сеансов — 2 месяца, 7 — 3 месяца, 10 — 4 месяца.</p></div></div>
+    <div class="price-wrap">
+      <div class="tabs"><button class="tab active" data-tab="women">Женский</button><button class="tab" data-tab="face">Лицо и спина</button><button class="tab" data-tab="men">Мужской</button></div>
+      <div class="price-panel active" id="women">
+        <div class="price-item"><div class="price-title"><div><h3>Массаж тела 60 минут</h3><p>Лимфодренажный, антицеллюлитный, корректирующий, классический, спортивный, расслабляющий, медовый</p></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>3 500 ₽</b></div><div class="tier"><small>5 сеансов</small><b>16 500 ₽</b></div><div class="tier"><small>7 сеансов</small><b>22 700 ₽</b></div><div class="tier"><small>10 сеансов</small><b>30 000 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Массаж тела 90 минут</h3></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>4 800 ₽</b></div><div class="tier"><small>5 сеансов</small><b>22 800 ₽</b></div><div class="tier"><small>7 сеансов</small><b>31 200 ₽</b></div><div class="tier"><small>10 сеансов</small><b>43 200 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Массаж 60 минут на геле STYX</h3></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>4 500 ₽</b></div><div class="tier"><small>5 сеансов</small><b>21 300 ₽</b></div><div class="tier"><small>7 сеансов</small><b>29 300 ₽</b></div><div class="tier"><small>10 сеансов</small><b>40 500 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Обёртывание «Термо-одеяло»</h3><p>Уменьшение объёмов и выведение лишней жидкости</p></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>4 000 ₽</b></div><div class="tier"><small>5 сеансов</small><b>19 000 ₽</b></div><div class="tier"><small>7 сеансов</small><b>26 000 ₽</b></div><div class="tier"><small>10 сеансов</small><b>36 000 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Обёртывание «Виски-пеленание»</h3><p>Работа с отёчностью и тургором кожи</p></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>4 700 ₽</b></div><div class="tier"><small>5 сеансов</small><b>22 300 ₽</b></div><div class="tier"><small>7 сеансов</small><b>30 500 ₽</b></div><div class="tier"><small>10 сеансов</small><b>42 300 ₽</b></div></div></div>
+      </div>
+      <div class="price-panel" id="face">
+        <div class="price-item"><div class="price-title"><div><h3>Массаж лица 30 минут</h3></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>2 800 ₽</b></div><div class="tier"><small>5 сеансов</small><b>13 300 ₽</b></div><div class="tier"><small>7 сеансов</small><b>18 200 ₽</b></div><div class="tier"><small>10 сеансов</small><b>25 000 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Массаж лица 45 минут</h3></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>3 000 ₽</b></div><div class="tier"><small>5 сеансов</small><b>14 200 ₽</b></div><div class="tier"><small>7 сеансов</small><b>19 500 ₽</b></div><div class="tier"><small>10 сеансов</small><b>27 000 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Скульптурный массаж лица 55 минут</h3></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>3 500 ₽</b></div><div class="tier"><small>5 сеансов</small><b>16 500 ₽</b></div><div class="tier"><small>7 сеансов</small><b>22 700 ₽</b></div><div class="tier"><small>10 сеансов</small><b>31 000 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Массаж спины 45 минут</h3></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>3 000 ₽</b></div><div class="tier"><small>5 сеансов</small><b>14 200 ₽</b></div><div class="tier"><small>7 сеансов</small><b>19 500 ₽</b></div><div class="tier"><small>10 сеансов</small><b>27 000 ₽</b></div></div></div>
+      </div>
+      <div class="price-panel" id="men">
+        <div class="price-item"><div class="price-title"><div><h3>Мужской массаж 60 минут</h3></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>4 000 ₽</b></div><div class="tier"><small>5 сеансов</small><b>19 000 ₽</b></div><div class="tier"><small>7 сеансов</small><b>26 000 ₽</b></div><div class="tier"><small>10 сеансов</small><b>36 000 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Мужской массаж 90 минут</h3></div></div><div class="tiers"><div class="tier primary"><small>1 сеанс</small><b>5 300 ₽</b></div><div class="tier"><small>5 сеансов</small><b>25 200 ₽</b></div><div class="tier"><small>7 сеансов</small><b>34 500 ₽</b></div><div class="tier"><small>10 сеансов</small><b>47 700 ₽</b></div></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Ручная пластика</h3><p>60 минут антицеллюлитного массажа + 30 минут медового массажа на проблемные зоны</p></div><b>4 700 ₽</b></div></div>
+        <div class="price-item"><div class="price-title"><div><h3>Экспресс похудение</h3><p>60 минут корректирующего массажа + 30 минут медового массажа + 60 минут горячего обёртывания</p></div><b>7 700 ₽</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:18px">
+  <div class="wrap trial">
+    <div class="trial-card"><div class="eyebrow" style="color:#c7d4cf">Для новых клиентов</div><h3>Попробуйте студию без большого курса</h3><p>Пробный женский сеанс 55 минут — хороший способ познакомиться с мастером и подобрать программу.</p><div class="price">3 000 ₽</div><button class="btn champ" data-open-booking>Выбрать пробный сеанс</button><svg viewBox="0 0 200 200" fill="none" aria-hidden="true"><path d="M30 145c39-70 77-94 110-66 19 16 22 44 35 69" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M42 159c39-30 80-35 122-8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div>
+    <div class="trial-list"><div class="eyebrow">Пробный прайс</div><div class="trial-row"><span>Женский · 55 минут</span><b>3 000 ₽</b></div><div class="trial-row"><span>Мужской · 55 минут</span><b>3 500 ₽</b></div><div class="trial-row"><span>Женский · 90 минут</span><b>4 000 ₽</b></div><div class="trial-row"><span>Мужской · 90 минут</span><b>4 500 ₽</b></div><div class="trial-row"><span>Тест-драйв · 90 минут</span><b>5 500 ₽</b></div></div>
+  </div>
+</section>
+
+<section class="booking-band">
+  <div class="wrap booking-grid">
+    <div><div class="eyebrow">Онлайн-запись</div><h2>Выберите услугу, мастера, дату и время — всё в одном месте</h2><p>В полноценной версии запись можно связать с привычной системой студии или отправлять готовую заявку администратору. В этом демо работает интерактивный сценарий записи.</p></div>
+    <button class="btn" data-open-booking>Открыть демо-запись</button>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="wrap footer-grid"><div><div class="brand" style="margin-bottom:20px"><strong>SOKOLOVA</strong><span>massage studio</span></div><h3>Москва, м. Октябрьское поле</h3><p>Маршала Соколовского, 3</p></div><div class="footer-links"><a href="https://wa.me/79858165220" target="_blank" rel="noopener">WhatsApp: +7 985 816-52-20</a><a href="tel:+79858165220">Позвонить</a><button class="btn" style="margin-top:18px" data-open-booking>Записаться</button></div></div></footer>
+
+<div class="modal" id="bookingModal" aria-hidden="true">
+  <div class="booking" role="dialog" aria-modal="true" aria-label="Онлайн-запись">
+    <div class="booking-top"><div><div class="eyebrow">Sokolova · демо-запись</div></div><button class="close" id="closeBooking" aria-label="Закрыть">×</button></div>
+    <div class="progress"><span class="on"></span><span></span><span></span><span></span></div>
+    <div class="step active" data-step="0"><h3>Услуга</h3><p>Цена указана за один сеанс</p><div class="options">
+      <button class="option" data-service="Пробный женский массаж · 55 минут" data-price="3 000 ₽"><span>Пробный женский массаж · 55 минут</span><b>3 000 ₽</b></button>
+      <button class="option" data-service="Массаж тела · 60 минут" data-price="3 500 ₽"><span>Массаж тела · 60 минут</span><b>3 500 ₽</b></button>
+      <button class="option" data-service="Массаж тела · 90 минут" data-price="4 800 ₽"><span>Массаж тела · 90 минут</span><b>4 800 ₽</b></button>
+      <button class="option" data-service="Массаж лица · 45 минут" data-price="3 000 ₽"><span>Массаж лица · 45 минут</span><b>3 000 ₽</b></button>
+      <button class="option" data-service="Обёртывание «Термо-одеяло»" data-price="4 000 ₽"><span>Обёртывание «Термо-одеяло»</span><b>4 000 ₽</b></button>
+    </div></div>
+    <div class="step" data-step="1"><h3>Мастер</h3><p>Выберите специалиста</p><div class="options">
+      <button class="option" data-master="Диана"><span>Диана</span><b>коррекция фигуры</b></button>
+      <button class="option" data-master="Иван"><span>Иван</span><b>спорт / стоун</b></button>
+      <button class="option" data-master="Светлана"><span>Светлана</span><b>медицинский подход</b></button>
+      <button class="option" data-master="Максим"><span>Максим</span><b>реабилитация</b></button>
+    </div></div>
+    <div class="step" data-step="2"><h3>Дата</h3><p>Демо свободных дней</p><div class="date-grid">
+      <button class="option" data-date="30 сентября">30 сен</button><button class="option" data-date="1 октября">1 окт</button><button class="option" data-date="2 октября">2 окт</button><button class="option" data-date="3 октября">3 окт</button><button class="option" data-date="4 октября">4 окт</button><button class="option" data-date="5 октября">5 окт</button>
+    </div></div>
+    <div class="step" data-step="3"><h3>Время</h3><p>Выберите удобное время</p><div class="time-grid">
+      <button class="option" data-time="10:00">10:00</button><button class="option" data-time="12:30">12:30</button><button class="option" data-time="15:00">15:00</button><button class="option" data-time="17:30">17:30</button><button class="option" data-time="19:00">19:00</button><button class="option" data-time="20:30">20:30</button>
+    </div><div class="summary" id="summary"></div><a class="btn" id="whatsappBooking" target="_blank" rel="noopener" style="width:100%;margin-top:14px">Отправить заявку в WhatsApp</a><div class="note">Демо показывает механику. В полноценной версии можно подключить актуальное расписание студии и автоматические уведомления.</div></div>
+    <div class="booking-nav"><button class="btn secondary" id="prevStep" style="visibility:hidden">Назад</button><button class="btn champ" id="nextStep" disabled>Далее</button></div>
+  </div>
+</div>
+
+<script>
+const tabs=[...document.querySelectorAll('.tab')];
+tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('active'));document.querySelectorAll('.price-panel').forEach(p=>p.classList.remove('active'));t.classList.add('active');document.getElementById(t.dataset.tab).classList.add('active')}));
+
+document.querySelectorAll('.compare').forEach(c=>{const r=c.querySelector('input'),after=c.querySelector('.after'),d=c.querySelector('.divider');const paint=()=>{after.style.clipPath=`inset(0 ${100-r.value}% 0 0)`;d.style.left=r.value+'%'};r.addEventListener('input',paint);paint();});
+
+const modal=document.getElementById('bookingModal'),closeBooking=document.getElementById('closeBooking'),prev=document.getElementById('prevStep'),next=document.getElementById('nextStep'),steps=[...document.querySelectorAll('.step')],bars=[...document.querySelectorAll('.progress span')];
+let current=0;const state={service:'',price:'',master:'',date:'',time:''};
+function openBooking(){modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+document.querySelectorAll('[data-open-booking]').forEach(b=>b.addEventListener('click',openBooking));closeBooking.addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+function selectedForStep(i){return [state.service,state.master,state.date,state.time][i]}
+function render(){steps.forEach((s,i)=>s.classList.toggle('active',i===current));bars.forEach((b,i)=>b.classList.toggle('on',i<=current));prev.style.visibility=current===0?'hidden':'visible';next.style.display=current===3?'none':'inline-flex';next.disabled=!selectedForStep(current);if(current===3)renderSummary();}
+function choose(group,button,key,value){group.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));button.classList.add('selected');state[key]=value;next.disabled=false;if(current===3)renderSummary();}
+document.querySelector('[data-step="0"] .options').addEventListener('click',e=>{const b=e.target.closest('.option');if(!b)return;choose(e.currentTarget,b,'service',b.dataset.service);state.price=b.dataset.price});
+document.querySelector('[data-step="1"] .options').addEventListener('click',e=>{const b=e.target.closest('.option');if(!b)return;choose(e.currentTarget,b,'master',b.dataset.master)});
+document.querySelector('.date-grid').addEventListener('click',e=>{const b=e.target.closest('.option');if(!b)return;choose(e.currentTarget,b,'date',b.dataset.date)});
+document.querySelector('.time-grid').addEventListener('click',e=>{const b=e.target.closest('.option');if(!b)return;choose(e.currentTarget,b,'time',b.dataset.time)});
+next.addEventListener('click',()=>{if(current<3&&selectedForStep(current)){current++;render()}});prev.addEventListener('click',()=>{if(current>0){current--;render()}});
+function renderSummary(){const s=document.getElementById('summary');s.innerHTML=`<div class="summary-row"><span>Услуга</span><b>${state.service||'—'} · ${state.price||''}</b></div><div class="summary-row"><span>Мастер</span><b>${state.master||'—'}</b></div><div class="summary-row"><span>Дата</span><b>${state.date||'—'}</b></div><div class="summary-row"><span>Время</span><b>${state.time||'—'}</b></div>`;const msg=`Здравствуйте! Хочу записаться: ${state.service} (${state.price}), мастер ${state.master}, ${state.date}, ${state.time}.`;document.getElementById('whatsappBooking').href='https://wa.me/79858165220?text='+encodeURIComponent(msg)}
+render();
+</script>
+</body>
+</html>
