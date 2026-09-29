@@ -47,8 +47,8 @@ button{cursor:pointer}
 .hero p{font-size:20px;line-height:1.6;color:var(--sage);max-width:640px;margin:0 0 28px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
 .hero-visual{position:relative}
-.hero-photo{border-radius:40px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:.83/1;position:relative;background:#d9d3c8}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.hero-photo{border-radius:40px;overflow:hidden;box-shadow:var(--shadow);position:relative;background:#d9d3c8}
+.hero-photo img{width:100%;height:auto}
 .hero-badge{position:absolute;right:-22px;bottom:26px;width:122px;height:122px;border-radius:50%;background:var(--forest);color:var(--ivory);display:grid;place-items:center;text-align:center;padding:12px;border:7px solid var(--ivory);box-shadow:0 18px 35px rgba(18,51,44,.18)}
 .hero-badge strong{font-family:"Iowan Old Style","Baskerville",Georgia,serif;font-size:31px;font-weight:500;line-height:1}
 .hero-badge span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;line-height:1.35}
@@ -93,6 +93,8 @@ button{cursor:pointer}
 .results-arrow:disabled{opacity:.35;cursor:default}
 .results-arrow svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .results-arrow.next svg{transform:rotate(180deg)}
+.dark .results-arrow{border-color:var(--ivory);color:var(--ivory)}
+.dark .results-arrow:hover:not(:disabled){background:var(--ivory);color:var(--forest)}
 .compare{position:relative;border-radius:30px;overflow:hidden;aspect-ratio:.78/1;background:#ddd;box-shadow:var(--shadow)}
 .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 .compare img.after{clip-path:inset(0 50% 0 0)}
@@ -178,7 +180,7 @@ button{cursor:pointer}
  .wrap{width:min(100% - 28px,680px)}
  .topbar{position:relative;top:auto;background:var(--ivory);backdrop-filter:none}
  .topbar-inner{height:68px}.brand strong{font-size:22px}.brand span{font-size:9px}.topbar .btn{padding:12px 16px;font-size:14px}
- .hero{padding:24px 0 36px}.hero-grid{grid-template-columns:1fr;gap:38px}.hero-visual{order:-1}.hero-photo{aspect-ratio:1.16/1;border-radius:28px}.hero-photo img{object-position:center 25%}.hero-badge{width:96px;height:96px;right:-8px;bottom:-18px;border-width:6px;padding:8px}.hero-badge strong{font-size:25px}.hero-badge span{font-size:8px;letter-spacing:.06em}
+ .hero{padding:24px 0 36px}.hero-grid{grid-template-columns:1fr;gap:38px}.hero-visual{order:-1}.hero-photo{border-radius:28px}.hero-badge{width:96px;height:96px;right:-8px;bottom:-18px;border-width:6px;padding:8px}.hero-badge strong{font-size:25px}.hero-badge span{font-size:8px;letter-spacing:.06em}
  .hero h1{font-size:clamp(43px,12.5vw,56px);line-height:.98;margin:12px 0 18px;letter-spacing:-.04em}.hero p{font-size:17px;line-height:1.55}.hero-actions{display:grid;grid-template-columns:1fr}.hero-actions .btn{width:100%}
  .stats{margin-top:30px}.stat{padding:18px 8px 18px 0}.stat+.stat{padding-left:12px}.stat strong{font-size:24px}.stat span{font-size:11px}
  .signature{padding:48px 0 54px}.signature-grid{grid-template-columns:1fr;gap:26px}.signature-art{position:relative;top:auto;min-height:auto;padding:28px}.signature-art svg{height:110px}.signature-art .serif{font-size:34px}.signature-copy h2,.section-title{font-size:46px}.signature-copy p{font-size:17px}.bullets{grid-template-columns:1fr}
@@ -263,7 +265,11 @@ button{cursor:pointer}
       <div><div class="eyebrow" style="color:#b7c6bf">Команда</div><h2 class="section-title">Мастера студии</h2><p>У каждого своя сильная сторона — от коррекции фигуры до спортивного массажа и работы с лицом.</p></div>
       <svg class="line-art" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M4 45c22-32 43-42 66-23 14 11 25 13 46-8" stroke="#f4efe5" stroke-width="1.6" stroke-linecap="round"/><path d="M13 51c19-13 39-17 58-7 17 9 30 7 43-2" stroke="#aa9364" stroke-width="1.6" stroke-linecap="round"/></svg>
     </div>
-    <div class="masters">
+    <div class="results-controls" aria-label="Переключение мастеров">
+      <button class="results-arrow prev" id="mastersPrev" type="button" aria-label="Предыдущие мастера" aria-controls="mastersCards" disabled><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M28 16H5m0 0c5-3 8-7 11-12M5 16c5 3 8 7 11 12"/></svg></button>
+      <button class="results-arrow next" id="mastersNext" type="button" aria-label="Следующие мастера" aria-controls="mastersCards"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M28 16H5m0 0c5-3 8-7 11-12M5 16c5 3 8 7 11 12"/></svg></button>
+    </div>
+    <div class="masters" id="mastersCards">
       <article class="master"><div class="master-media"><img src="assets/IMG_0836.jpeg" alt="Диана — массажист" /></div><div class="master-body"><h3>Диана</h3><strong>Опыт 6 лет</strong><p>Корректирующий, антицеллюлитный, лимфодренажный, медовый массаж, лицо и косметика STYX.</p></div></article>
       <article class="master"><div class="master-media"><img src="assets/IMG_0837.jpeg" alt="Иван — массажист" /></div><div class="master-body"><h3>Иван</h3><strong>Опыт 13 лет</strong><p>Спортивный, корректирующий, лимфодренажный, медовый массаж и стоунтерапия.</p></div></article>
       <article class="master"><div class="master-media"><img src="assets/IMG_0838.jpeg" alt="Светлана — массажист" /></div><div class="master-body"><h3>Светлана</h3><strong>Медицинское образование</strong><p>Врач-терапевт, преподавала в медицинском колледже и работала на кафедре физиологии.</p></div></article>
@@ -392,6 +398,31 @@ resultsNext.addEventListener('click',()=>moveResults(1));
 resultsScroller.addEventListener('scroll',syncResultsArrows,{passive:true});
 window.addEventListener('resize',syncResultsArrows);
 syncResultsArrows();
+
+const mastersScroller=document.getElementById('mastersCards');
+const masterCards=[...mastersScroller.querySelectorAll('.master')];
+const mastersPrev=document.getElementById('mastersPrev');
+const mastersNext=document.getElementById('mastersNext');
+function syncMastersArrows(){
+  const maxScroll=mastersScroller.scrollWidth-mastersScroller.clientWidth;
+  mastersPrev.disabled=mastersScroller.scrollLeft<=2;
+  mastersNext.disabled=mastersScroller.scrollLeft>=maxScroll-2;
+}
+function moveMasters(direction){
+  const current=mastersScroller.scrollLeft;
+  const maxScroll=mastersScroller.scrollWidth-mastersScroller.clientWidth;
+  const scrollerLeft=mastersScroller.getBoundingClientRect().left;
+  const positions=masterCards.map(card=>card.getBoundingClientRect().left-scrollerLeft+current);
+  const target=direction>0
+    ? positions.find(position=>position>current+2)??maxScroll
+    : positions.reverse().find(position=>position<current-2)??0;
+  mastersScroller.scrollTo({left:Math.max(0,Math.min(target,maxScroll)),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+}
+mastersPrev.addEventListener('click',()=>moveMasters(-1));
+mastersNext.addEventListener('click',()=>moveMasters(1));
+mastersScroller.addEventListener('scroll',syncMastersArrows,{passive:true});
+window.addEventListener('resize',syncMastersArrows);
+syncMastersArrows();
 
 const modal=document.getElementById('bookingModal'),closeBooking=document.getElementById('closeBooking'),prev=document.getElementById('prevStep'),next=document.getElementById('nextStep'),steps=[...document.querySelectorAll('.step')],bars=[...document.querySelectorAll('.progress span')];
 let current=0;const state={service:'',price:'',master:'',date:'',time:''};
