@@ -238,7 +238,34 @@ button{cursor:pointer}
   </div>
 </section>
 
+<style id="sokolova-floating-css">
+.sokolova-sculpture{position:fixed;right:-14px;top:58%;width:100px;height:133.333px;z-index:12;pointer-events:none;opacity:0;visibility:hidden;transform:translateY(-50%);transition:opacity .3s ease;contain:layout style}
+.sokolova-sculpture.is-visible{opacity:1;visibility:visible}
+.sokolova-sculpture img,.sokolova-sculpture canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 7px 8px rgba(21,59,49,.12))}
+.sokolova-sculpture img{opacity:0}
+.sokolova-sculpture.is-ready img{opacity:1}
+.sokolova-sculpture canvas{display:none}
+.sokolova-sculpture.is-sequence canvas{display:block}
+.sokolova-sculpture.is-sequence img{opacity:0}
+@supports(width:clamp(100px,10vw,200px)){
+ .sokolova-sculpture{--sculpture-width:clamp(140px,calc((100vw - 1180px)*.69),200px);width:var(--sculpture-width);height:calc(var(--sculpture-width)*1.333333);right:calc(var(--sculpture-width)*-.139)}
+}
+@media(max-width:1380px){
+ .sokolova-sculpture{--sculpture-width:100px}
+}
+@media(max-width:820px){
+ .sokolova-sculpture{--sculpture-width:92px;width:92px;height:122.666px;right:-12.8px;top:auto;bottom:100px;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:none}
+}
+@media(prefers-reduced-motion:reduce){.sokolova-sculpture{transition:none}.sokolova-sculpture canvas{display:none!important}.sokolova-sculpture.is-ready img{opacity:1!important}}
+</style>
 <section class="signature">
+  <!-- Isolated SOKOLOVA floating sculpture: decorative, no page content changed. -->
+  <div class="sokolova-sculpture" aria-hidden="true">
+    <img width="360" height="480" alt="" decoding="async">
+    <canvas width="360" height="480"></canvas>
+    <noscript><img src="assets/floating/poster.webp" width="360" height="480" alt="" loading="lazy" style="opacity:1"></noscript>
+  </div>
+
   <div class="wrap signature-grid">
     <div class="signature-art">
       <div class="eyebrow" style="color:#c7d4cf">Sokolova method</div>
@@ -467,6 +494,95 @@ window.addEventListener('resize',syncMobileCta);
 syncMobileCta();
 
 render();
+</script>
+<script id="sokolova-floating-js">
+(() => {
+ 'use strict';
+ const stage=document.querySelector('.sokolova-sculpture');
+ const method=document.querySelector('.signature'), end=document.querySelector('.booking-band');
+ const hero=document.querySelector('.hero-photo img'), poster=stage.querySelector('img'), canvas=stage.querySelector('canvas');
+ const mobile=matchMedia('(max-width:1380px)'), reduced=matchMedia('(prefers-reduced-motion:reduce)');
+ // Retain the query objects on the connected element as well as in closures.
+ // CSS independently restores the poster when the browser reduces motion.
+ Object.defineProperty(stage,'motionQueries',{value:[mobile,reduced]});
+ const modal=document.getElementById('bookingModal');
+ const N=72, cache=new Map(), pending=new Map();
+ let ctx=null, raf=0, current=0, target=0, visible=false, ready=false, initialized=false, failed=false, revision=0, format='webp';
+ const isAnimated=()=>!reduced.matches&&!failed;
+ const frame=()=>((Math.round(current)%N)+N)%N;
+ function dispose(bitmap){if(typeof bitmap.close==='function')bitmap.close()}
+ function htmlImage(url){return new Promise((resolve,reject)=>{
+  const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(Error('Image unavailable'));img.src=url;
+ })}
+ function decode(blob){
+  const fallback=()=>{const url=URL.createObjectURL(blob);return htmlImage(url).then(img=>{URL.revokeObjectURL(url);return img},e=>{URL.revokeObjectURL(url);throw e})};
+  return typeof createImageBitmap==='function'?createImageBitmap(blob).catch(fallback):fallback();
+ }
+ function clear(){
+  revision++;cancelAnimationFrame(raf);raf=0;
+  for(const p of pending.values())p.abort();pending.clear();
+  for(const bitmap of cache.values())dispose(bitmap);cache.clear();
+  stage.classList.remove('is-sequence');
+ }
+ function schedule(){if(!raf&&visible&&ready&&isAnimated()&&!document.hidden)raf=requestAnimationFrame(draw)}
+ function get(i){
+  i=(i+N)%N;
+  if(cache.has(i)){const b=cache.get(i);cache.delete(i);cache.set(i,b);return b}
+  if(pending.has(i)||pending.size>=3||!visible||!isAnimated())return null;
+  const controller=typeof AbortController==='function'?new AbortController():{abort(){},signal:undefined},token=revision;pending.set(i,controller);
+  const url=`assets/floating/frame-${String(i).padStart(3,'0')}.${format}`;
+  const request=typeof fetch==='function'?fetch(url,{signal:controller.signal})
+   .then(r=>{if(!r.ok)throw Error('Frame unavailable');return r.blob()})
+   .then(decode):htmlImage(url);
+  request
+   .then(bitmap=>{
+    if(token!==revision){dispose(bitmap);return}
+    cache.set(i,bitmap);
+    while(cache.size>10){const key=cache.keys().next().value;dispose(cache.get(key));cache.delete(key)}
+   })
+   .catch(e=>{if(e.name!=='AbortError'&&token===revision){failed=true;clear();stage.dataset.fallback='poster'}})
+   .then(()=>{if(pending.get(i)===controller)pending.delete(i);schedule()});
+  return null;
+ }
+ function draw(){
+  raf=0;if(!visible||!ready||!isAnimated()||document.hidden)return;
+  if(!ctx){ctx=canvas.getContext('2d',{alpha:true});if(!ctx){failed=true;stage.dataset.fallback='poster';return}}
+  current+= (target-current)*.14;
+  if(Math.abs(target-current)<.025)current=target;
+  const i=frame(), bitmap=get(i);
+  if(bitmap){ctx.clearRect(0,0,360,480);ctx.drawImage(bitmap,0,0,360,480);stage.classList.add('is-sequence');stage.dataset.frame=String(i)}
+  get(i+1);get(i-1);
+  if(current!==target)schedule();
+ }
+ function update(){
+  const start=method.offsetTop-innerHeight*.35, stop=end.offsetTop-innerHeight*.85;
+  visible=scrollY>=start&&scrollY<stop&&!modal.classList.contains('open');
+  stage.classList.toggle('is-visible',visible);
+  stage.dataset.visible=String(visible);
+  target=Math.max(0,Math.min(N,(scrollY-start)/Math.max(1,stop-start)*N));
+  if(!visible){cancelAnimationFrame(raf);raf=0;stage.classList.remove('is-sequence');return}
+  if(!ready&&initialized)loadPoster();
+  if(reduced.matches){if(cache.size||pending.size||stage.classList.contains('is-sequence'))clear();return}
+  schedule();
+ }
+ let posterRequested=false;
+ function loadPoster(){
+  if(posterRequested)return;posterRequested=true;
+  poster.onload=()=>{ready=true;stage.classList.add('is-ready');stage.dataset.fallback='poster';schedule()};
+  poster.onerror=()=>{if(format==='webp'){format='png';poster.src='assets/floating/poster.png';return}ready=false;stage.classList.remove('is-ready','is-sequence');stage.dataset.fallback='hidden'};
+  poster.src='assets/floating/poster.webp';
+ }
+ function mediaChange(){stage.dataset.reducedMotion=String(reduced.matches);clear();failed=false;current=target;update()}
+ for(const query of [mobile,reduced]){if(query.addEventListener)query.addEventListener('change',mediaChange);else query.addListener(mediaChange)}
+ addEventListener('scroll',update,{passive:true});addEventListener('resize',update,{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);raf=0}else update()});
+ new MutationObserver(update).observe(modal,{attributes:true,attributeFilter:['class']});
+ function init(){initialized=true;update();
+  if(typeof IntersectionObserver==='function')new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting))loadPoster()},{rootMargin:'150px'}).observe(method);
+ }
+ if(hero.complete)init();else{hero.addEventListener('load',init,{once:true});hero.addEventListener('error',init,{once:true})}
+ update();
+})();
 </script>
 </body>
 </html>
