@@ -6,6 +6,25 @@
 <meta name="theme-color" content="#153b31" />
 <title>SOKOLOVA — massage studio</title>
 <meta name="description" content="SOKOLOVA massage studio — массаж и коррекция фигуры с медицинским подходом. Москва, м. Октябрьское поле." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://gennadijvaliev02-design.github.io/Sokolova/" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<!-- Open Graph / Social Media -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="SOKOLOVA massage studio" />
+<meta property="og:url" content="https://gennadijvaliev02-design.github.io/Sokolova/" />
+<meta property="og:title" content="SOKOLOVA — студия массажа на Октябрьском поле" />
+<meta property="og:description" content="Массаж и коррекция фигуры с медицинским подходом. Пробный сеанс от 3 000 ₽. Онлайн-запись." />
+<meta property="og:image" content="https://gennadijvaliev02-design.github.io/Sokolova/assets/og-sokolova.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SOKOLOVA — massage studio" />
+<meta name="twitter:description" content="Массаж и коррекция фигуры с медицинским подходом. Москва, м. Октябрьское поле." />
+<meta name="twitter:image" content="https://gennadijvaliev02-design.github.io/Sokolova/assets/og-sokolova.jpg" />
 <style>
 :root{
   --forest:#153b31;
@@ -307,7 +326,7 @@ button{cursor:pointer}
 
 <section class="section" id="results">
   <div class="wrap">
-    <div class="section-head"><div><div class="eyebrow">Результаты</div><h2 class="section-title">До / после</h2><p>Потяните линию на фотографии. В демо мы использовали материалы студии и разделили исходные коллажи на интерактивные сравнения.</p></div><svg class="line-art" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M12 41c14-20 26-30 39-30 17 0 19 34 36 34 9 0 16-6 21-14" stroke="#153b31" stroke-width="1.6" stroke-linecap="round"/><path d="M8 50c33 1 61-4 103-25" stroke="#aa9364" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+    <div class="section-head"><div><div class="eyebrow">Результаты</div><h2 class="section-title">До / после</h2><p>Потяните разделитель на фотографии для интерактивного сравнения результатов до и после курса процедур.</p></div><svg class="line-art" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M12 41c14-20 26-30 39-30 17 0 19 34 36 34 9 0 16-6 21-14" stroke="#153b31" stroke-width="1.6" stroke-linecap="round"/><path d="M8 50c33 1 61-4 103-25" stroke="#aa9364" stroke-width="1.4" stroke-linecap="round"/></svg></div>
     <div class="results-controls" aria-label="Переключение результатов">
       <button class="results-arrow prev" id="resultsPrev" type="button" aria-label="Предыдущие результаты" aria-controls="resultsCases" disabled><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M28 16H5m0 0c5-3 8-7 11-12M5 16c5 3 8 7 11 12"/></svg></button>
       <button class="results-arrow next" id="resultsNext" type="button" aria-label="Следующие результаты" aria-controls="resultsCases"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M28 16H5m0 0c5-3 8-7 11-12M5 16c5 3 8 7 11 12"/></svg></button>
@@ -358,8 +377,8 @@ button{cursor:pointer}
 
 <section class="booking-band">
   <div class="wrap booking-grid">
-    <div><div class="eyebrow">Онлайн-запись</div><h2>Выберите услугу, мастера, дату и время — всё в одном месте</h2><p>В полноценной версии запись можно связать с привычной системой студии или отправлять готовую заявку администратору. В этом демо работает интерактивный сценарий записи.</p></div>
-    <button class="btn" data-open-booking>Открыть демо-запись</button>
+    <div><div class="eyebrow">Онлайн-запись</div><h2>Выберите услугу, мастера, дату и время — всё в одном месте</h2><p>Выберите направление, желаемого специалиста, дату и время визита. Заявка с выбранными параметрами будет мгновенно передана администратору студии в WhatsApp.</p></div>
+    <button class="btn" data-open-booking>Записаться онлайн</button>
   </div>
 </section>
 </main>
@@ -370,7 +389,7 @@ button{cursor:pointer}
 
 <div class="modal" id="bookingModal" aria-hidden="true">
   <div class="booking" role="dialog" aria-modal="true" aria-label="Онлайн-запись">
-    <div class="booking-top"><div><div class="eyebrow">Sokolova · демо-запись</div></div><button class="close" id="closeBooking" aria-label="Закрыть">×</button></div>
+    <div class="booking-top"><div><div class="eyebrow">Sokolova · онлайн-запись</div></div><button class="close" id="closeBooking" aria-label="Закрыть">×</button></div>
     <div class="progress"><span class="on"></span><span></span><span></span><span></span></div>
     <div class="step active" data-step="0"><h3>Услуга</h3><p>Цена указана за один сеанс</p><div class="options">
       <button class="option" data-service="Пробный женский массаж · 55 минут" data-price="3 000 ₽"><span>Пробный женский массаж · 55 минут</span><b>3 000 ₽</b></button>
@@ -385,12 +404,12 @@ button{cursor:pointer}
       <button class="option" data-master="Светлана"><span>Светлана</span><b>медицинский подход</b></button>
       <button class="option" data-master="Максим"><span>Максим</span><b>реабилитация</b></button>
     </div></div>
-    <div class="step" data-step="2"><h3>Дата</h3><p>Демо свободных дней</p><div class="date-grid">
+    <div class="step" data-step="2"><h3>Дата</h3><p>Ближайшие свободные дни</p><div class="date-grid">
       <button class="option" data-date="30 сентября">30 сен</button><button class="option" data-date="1 октября">1 окт</button><button class="option" data-date="2 октября">2 окт</button><button class="option" data-date="3 октября">3 окт</button><button class="option" data-date="4 октября">4 окт</button><button class="option" data-date="5 октября">5 окт</button>
     </div></div>
     <div class="step" data-step="3"><h3>Время</h3><p>Выберите удобное время</p><div class="time-grid">
       <button class="option" data-time="10:00">10:00</button><button class="option" data-time="12:30">12:30</button><button class="option" data-time="15:00">15:00</button><button class="option" data-time="17:30">17:30</button><button class="option" data-time="19:00">19:00</button><button class="option" data-time="20:30">20:30</button>
-    </div><div class="summary" id="summary"></div><a class="btn" id="whatsappBooking" target="_blank" rel="noopener" style="width:100%;margin-top:14px">Отправить заявку в WhatsApp</a><div class="note">Демо показывает механику. В полноценной версии можно подключить актуальное расписание студии и автоматические уведомления.</div></div>
+    </div><div class="summary" id="summary"></div><a class="btn" id="whatsappBooking" target="_blank" rel="noopener" style="width:100%;margin-top:14px">Отправить заявку в WhatsApp</a><div class="note">Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных. Администратор студии свяжется с вами для подтверждения времени.</div></div>
     <div class="booking-nav"><button class="btn secondary" id="prevStep" style="visibility:hidden">Назад</button><button class="btn champ" id="nextStep" disabled>Далее</button></div>
   </div>
 </div>
